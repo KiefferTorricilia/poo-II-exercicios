@@ -47,4 +47,76 @@ app.get("/videos", (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         }
     }
 }));
+app.post("/videos", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = req.body.id;
+        const titulo = req.body.titulo;
+        const segundos = req.body.segundos;
+        const upload_date = req.body.upload_date;
+        const newVideo = new videos_1.Videos(id, titulo, segundos, upload_date);
+        yield (0, knex_1.db)("videos").insert({
+            id: newVideo.getId(),
+            titulo: newVideo.getTitulo(),
+            segundos: newVideo.getSegundos(),
+            upload_date: newVideo.getUploadDate()
+        });
+        res.status(200).send("Usuário cadastrado com sucesso");
+    }
+    catch (error) {
+        console.log(error);
+        if (req.statusCode === 200) {
+            res.status(500);
+        }
+        if (error instanceof Error) {
+            res.send(error.message);
+        }
+        else {
+            res.send("Erro inesperado");
+        }
+    }
+}));
+app.put("/videos/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = req.params.id;
+        const { titulo, segundos, upload_date } = req.body;
+        const newVideo = new videos_1.Videos(id, titulo, segundos, upload_date);
+        yield knex_1.db.update({
+            titulo: newVideo.getTitulo,
+            segundos: newVideo.getSegundos,
+            upload_date: newVideo.getUploadDate
+        }).from("videos").where({ id: id });
+        res.status(200).send("Video alterado com sucesso.");
+    }
+    catch (error) {
+        console.log(error);
+        if (req.statusCode === 200) {
+            res.status(500);
+        }
+        if (error instanceof Error) {
+            res.send(error.message);
+        }
+        else {
+            res.send("Erro inesperado");
+        }
+    }
+}));
+app.delete("/videos/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = req.params.id;
+        const video = new videos_1.Videos(id, "23", 0, "23");
+        yield knex_1.db.delete().from("videos").where({ id: id });
+    }
+    catch (error) {
+        console.log(error);
+        if (req.statusCode === 200) {
+            res.status(500);
+        }
+        if (error instanceof Error) {
+            res.send(error.message);
+        }
+        else {
+            res.send("Erro inesperado");
+        }
+    }
+}));
 //# sourceMappingURL=index.js.map

@@ -2,11 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Videos = void 0;
 class Videos {
-    constructor(id, titulo, segundos, uploadDate) {
+    constructor(id, titulo, segundos, upload_date) {
         this.id = id;
         this.titulo = titulo;
         this.segundos = segundos;
-        this.uploadDate = uploadDate;
+        this.upload_date = upload_date;
         this.getId = () => {
             return this.id;
         };
@@ -17,7 +17,7 @@ class Videos {
             return this.segundos;
         };
         this.getUploadDate = () => {
-            return this.uploadDate;
+            return this.upload_date;
         };
         this.setTitulo = (input) => {
             this.titulo = input;
@@ -26,9 +26,10 @@ class Videos {
             this.segundos = input;
         };
         this.setUploadDate = (input) => {
-            this.uploadDate = input;
+            this.upload_date = input;
         };
     }
 }
 exports.Videos = Videos;
+;
 //# sourceMappingURL=videos.js.map

@@ -3,7 +3,7 @@ export class Videos {
         private id: string,
         private titulo: string,
         private segundos: number,
-        private uploadDate: string
+        private upload_date: string
     ){}
 
     public getId = ():string => {
@@ -19,7 +19,7 @@ export class Videos {
     };
 
     public getUploadDate = ():string => {
-        return this.uploadDate
+        return this. upload_date
     };
 
     public setTitulo = (input:string):void => {
@@ -31,7 +31,7 @@ export class Videos {
     };
 
     public setUploadDate = (input:string):void => {
-        this.uploadDate = input
-    }
+        this. upload_date = input
+    };
 
-}
+};
